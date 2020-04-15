@@ -1,0 +1,99 @@
+body{
+}
+main{
+    margin-top: -16px;
+}
+.slider{
+    background: #000;
+    height: auto;
+    max-height: 450px;
+    overflow: hidden;
+    text-align: left;
+}
+.slider img{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+.cont-img-card{
+    height: 120px;
+    overflow: hidden;
+    text-align: left;
+}
+.cont-img-card img{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+.cont-img-update{
+    width: 170px;
+    overflow: hidden;
+    text-align: left;
+}
+.cont-img-update img{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+.img-categories{
+
+    width: 100%;
+    overflow: hidden;
+}
+.img-categories img{
+    width: 110%;
+    
+}
+.img-categories1{
+
+    width: 100px;
+    overflow: hidden;
+}
+.img-categories1 img{
+    width: 100%;
+    
+}
+.slider-admin{
+    overflow: hidden;
+    text-align: left;
+}
+.slider-admin img{
+    width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: auto;
+}
+.slider-admin .title{
+    position: absolute;
+    bottom: 45px;
+}
+.slider-admin .text{
+    line-height : 15px;
+    position: absolute;
+    bottom: 22px;
+}
+.option{
+    position: absolute;
+    top: 25px;
+    right: 55px;
+}
+.slider-admin .option2{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+.notification{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: -18px;
+    right: 10px;
+    font-size: 12px;
+}
+.modal-lg {
+    max-width: 90% !important;
+}
+.nav-show{
+    display: none !important;
+}
