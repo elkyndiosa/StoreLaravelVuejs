@@ -32,7 +32,7 @@ var app = new Vue({
             });
         },
         getImage: function(image_path){
-            return 'http://localhost/Delivery/storage/app/'+image_path;
+            return 'http://localhost/ProyectsFinish/Delivery/storage/app/'+image_path;
         },
         deleteCategory: function(id){
             var confirmed = confirm("Are you sure to eliminate this category?");
@@ -50,7 +50,7 @@ var app = new Vue({
             this.thumbImage = '';
             $('#img-show').show();
             $('#file').val('');
-            this.newImage='',
+            this.newImage='';
             this.fillCategory.id= category.id;
             this.fillCategory.name= category.name;
             this.fillCategory.image_path= category.image_path;            
@@ -61,6 +61,7 @@ var app = new Vue({
             var file= e.target.files[0];
             this.newImage = file;
             this.showImage(file);
+            
         },
         showImage: function(file){
             var reader = new FileReader();
@@ -77,8 +78,9 @@ var app = new Vue({
             if(this.newImage){
                 formData.append('image', this.newImage);
             }
+            
             axios.post(url, formData).then(response =>{
-                
+                console.log(response);
                 this.newImage='';
                 this.thumbImage= '';
                 formData.delete('id');
@@ -87,6 +89,8 @@ var app = new Vue({
                 $('#updateCategory').removeClass('show');
                 toastr.success('Category update successfull'); //mensaje
                 this.getCategory();
+            }).catch(error => {
+                console.log(error.response);
             });
         },
         createCategory: function(){

@@ -39,10 +39,10 @@ class ProductController extends Controller {
 
     public function search($search) {
         $products = Product::where('status', '!=', 'Removed')
-                    ->where('name', 'like', '%'.$search.'%')
-                    ->orWhere('description', 'like', '%'.$search.'%')
-                    ->orderBy('id', 'DESC')->take(10)->get();
-        
+                        ->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('description', 'like', '%' . $search . '%')
+                        ->orderBy('id', 'DESC')->take(10)->get();
+
         return $products;
     }
 
@@ -65,7 +65,6 @@ class ProductController extends Controller {
     }
 
     public function create(Request $request) {
-
         //validate
         $validate = $this->validate($request, [
             'category' => ['required'],
@@ -103,45 +102,49 @@ class ProductController extends Controller {
     }
 
     public function addCart(Request $request) {
-        if (!\Session::has('cart')) {
-            \Session::put('cart', array());
-        }
-        $cart = \Session::get('cart');
-        $cantCart = count($cart);
-        if ($request->id != null) {
-            if (isset($cantCart) and $cantCart > 0) {
-                $id_received = $request->id;
-                $x = 0;
-                $y = null;
-                foreach ($cart as $ca) {
-                    if ($ca['id'] == $id_received) {
-                        $y = $x;
-                        $exists = TRUE;
-                        break;
-                    } else {
-                        $exists = FALSE;
-                    }
-                    ++$x;
-                }
-
-                if ($exists) {
-                    $cart[$y]['quantity'] = ++$cart[$y]['quantity'];
-                    \Session::put('cart', $cart);
-                    $cart2 = \Session::get('cart');
-                    $countPCart = count($cart2);
-                    return $countPCart;
-                }
+        if(\Auth::check()) {
+            if (!\Session::has('cart')) {
+                \Session::put('cart', array());
             }
+            $cart = \Session::get('cart');
+            $cantCart = count($cart);
+            if ($request->id != null) {
+                if (isset($cantCart) and $cantCart > 0) {
+                    $id_received = $request->id;
+                    $x = 0;
+                    $y = null;
+                    foreach ($cart as $ca) {
+                        if ($ca['id'] == $id_received) {
+                            $y = $x;
+                            $exists = TRUE;
+                            break;
+                        } else {
+                            $exists = FALSE;
+                        }
+                        ++$x;
+                    }
+
+                    if ($exists) {
+                        $cart[$y]['quantity'] = ++$cart[$y]['quantity'];
+                        \Session::put('cart', $cart);
+                        $cart2 = \Session::get('cart');
+                        $countPCart = count($cart2);
+                        return $countPCart;
+                    }
+                }
 
 
-            $product = $request->all();
-            array_push($cart, $product);
-            \Session::put('cart', $cart);
-            $cart2 = \Session::get('cart');
-            $countPCart = count($cart2);
-            return $countPCart;
+                $product = $request->all();
+                array_push($cart, $product);
+                \Session::put('cart', $cart);
+                $cart2 = \Session::get('cart');
+                $countPCart = count($cart2);
+                return $countPCart;
+            }
+            return 'data empty';
+        } else {
+            return false;
         }
-        return 'data empty';
     }
 
     public function increase($id) {

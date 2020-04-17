@@ -66,7 +66,7 @@ var app = new Vue({
     },
     methods: {
         getImage: function(image_path){
-             return 'http://localhost/Delivery/storage/app/'+image_path;
+             return 'http://localhost/ProyectsFinish/Delivery/storage/app/'+image_path;
 
          },
         getCart: function(){
@@ -167,17 +167,21 @@ var app = new Vue({
             formData.append('image_path', fillModalProd.image_path);
             formData.append('quantity', 1);
             axios.post(url, formData).then(response => {
-                $('#seeProduct').modal('hide');
-                formData.delete('id');
-                formData.delete('name');
-                formData.delete('description');
-                formData.delete('price');
-                formData.delete('status');
-                formData.delete('image_path');
-                this.cantCart = response.data;
-                var textNot = this.$refs.notifications;
-                textNot.innerText = this.cantCart;
-                toastr.success('Product add cart'); //mensaje
+                if(response.data == ''){
+                    toastr.warning('you must register to continue'); //mensaje
+                }else{
+                    $('#seeProduct').modal('hide');
+                    formData.delete('id');
+                    formData.delete('name');
+                    formData.delete('description');
+                    formData.delete('price');
+                    formData.delete('status');
+                    formData.delete('image_path');
+                    this.cantCart = response.data;
+                    var textNot = this.$refs.notifications;
+                    textNot.innerText = this.cantCart;
+                    toastr.success('Product add cart'); //mensaje
+            }
             });
         },
         increase:function(id){

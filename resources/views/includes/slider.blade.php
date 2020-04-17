@@ -5,7 +5,7 @@
         <?php $int = 0 ?> 
         @foreach($sliders as $image)
         <div class="carousel-item slider {{ $int == 0 ? 'active' : ''}}">
-            <img class="d-block" src=" http://localhost/Delivery/storage/app/{{ $image->image_path}} " >
+            <img class="d-block" src=" http://localhost/ProyectsFinish/Delivery/storage/app/{{ $image->image_path}} " >
             <div class="carousel-caption d-none d-md-block {{$image->color}}">
                 <h1>{{ $image->title }}</h1>
                 <h6>{{ $image->text }}</h6>

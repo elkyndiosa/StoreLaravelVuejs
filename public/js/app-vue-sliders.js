@@ -34,7 +34,7 @@ var app = new Vue({
     },
     methods: {
         getImage: function(image_path){
-            return 'http://localhost/Delivery/storage/app/'+image_path;
+            return 'http://localhost/ProyectsFinish/Delivery/storage/app/'+image_path;
         },
         getImageForShow:function(e){
             var file= e.target.files[0];

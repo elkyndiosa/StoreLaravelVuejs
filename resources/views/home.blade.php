@@ -12,7 +12,7 @@
             <a href="#" class="btn btn-primary ml-1 col-8 col-sm-3 mt-1 mt-sm-0"  v-on:click.prevent="getProducts"  v-if="current_category">See all products</a>
         </div>
         <div class="d-flex justify-content-center flex-wrap mt-3">
-            <div class="col-5 col-sm-3 col-lg-2 mt-1 d-flex align-content-center justify-content-center btn badge-info mx-1" style="height: 60px; width: 60px;"  v-for="cat in category" v-on:click.prevent="getProductsByCategory(cat, 1)">
+            <div class="col-5 col-sm-3 mt-1 d-flex align-content-center justify-content-center btn badge-info mx-1" style="height: 60px; width: 60px;"  v-for="cat in category" v-on:click.prevent="getProductsByCategory(cat, 1)">
                 <p class="font-weight-bold " style="margin: auto;">@{{cat.name}}</p>
             </div>
         </div>

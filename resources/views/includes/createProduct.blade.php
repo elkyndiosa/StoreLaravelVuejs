@@ -11,11 +11,12 @@
             <div class="modal-body">
                 <form  v-on:submit.prevent="createProduct" enctype="multipart/form-data">
                     @csrf
+                   
                     <div class="form-group">
                         <label for="category">Select category</label>
-                        <select class="form-control" id="category" name="category">   
+                        <select class="form-control" id="category" name="category" v-model="newProduct.category">   
                             <option class="" selected disabled="">Selected...</option>
-                            <option v-for='cat in category' v-bind:value='cat.id' > @{{ cat.name }} </option>
+                            <option v-for='cat in category' v-bind:value='cat.id'> @{{ cat.name }} </option>
                         </select>
                     </div>
 
@@ -35,14 +36,14 @@
                     </p>
                     <div class="form-group">
                         <label for="stock">Stock</label>
-                        <input type="number" name="price" id="price" class="form-control" v-model="newProduct.stock" required>
+                        <input type="number" name="stock" class="form-control" v-model="newProduct.stock" required>
                     </div>
                     <p class="bg-danger text-light text-center  mb-3 p-1 rounded-pill" role="alert" v-if="errors.stock">
                         <strong class="w-100">@{{errors.stock[0]}}</strong>
                     </p>
                     <div class="form-group">
                         <label for="price">Price</label>
-                        <input type="number" name="price" id="price" class="form-control" v-model="newProduct.price" required>
+                        <input type="number" name="price"  class="form-control" v-model="newProduct.price" required>
                     </div>
                     <p class="bg-danger text-light text-center  mb-3 p-1 rounded-pill" role="alert" v-if="errors.price">
                         <strong class="w-100">@{{errors.price[0]}}</strong>

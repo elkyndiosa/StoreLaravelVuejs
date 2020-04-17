@@ -195,7 +195,7 @@ var app = new Vue({
         getImageUpdate: function(id){
             var url = '../product/getImage/'+id;
             axios.get(url).then(response => {
-                this.image_path= 'http://localhost/Delivery/storage/app/'+response.data;
+                this.image_path= 'http://localhost/ProyectsFinish/Delivery/storage/app/'+response.data;
             });
         }
 

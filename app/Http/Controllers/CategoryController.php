@@ -23,6 +23,7 @@ class CategoryController extends Controller {
         $validate = $this->validate($request, [
             'name' => ['required']
         ]);
+       
         $name = ucfirst($request->name);
         $category = new Category();
         if (isset($request->image)) {
@@ -33,6 +34,7 @@ class CategoryController extends Controller {
             $category->image_path = $image_path;
         }
         $category->name = $name;
+        
         $category->save();
     }
 
@@ -43,17 +45,23 @@ class CategoryController extends Controller {
         ]);
         $id = $request->id;
         $name = ucfirst($request->name);
-
+        
         $category = Category::findOrFail($id);
+        
         if (isset($request->image)) {
+            
             Storage::delete($category->image_path);
             $image = $request->image;
             $image_path = time() . $image->getClientOriginalName();
+            
             $category->image_path = $image_path;
             $imagejpg = File::get($image);
+
+
             Storage::put($image_path, $imagejpg);
         }
         $category->name = $name;
+        
         $category->update();
     }
 
